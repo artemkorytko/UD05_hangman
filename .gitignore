@@ -20,14 +20,10 @@
 **/.idea/**/*.iml
 **/.idea/**/contentModel.xml
 **/.idea/**/modules.xml
-
+.idea/*
 *.suo
 *.user
 .vs/
-*.sln
-*.csproj
-.idea/
-
 [Bb]in/
 [Oo]bj/
 _UpgradeReport_Files/
