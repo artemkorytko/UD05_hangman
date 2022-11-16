@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UD05_hangman")]
+[assembly: AssemblyTitle("UD05Hangman")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UD05_hangman")]
+[assembly: AssemblyProduct("UD05Hangman")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("FF0ACA54-EC24-4B89-BF3E-75614E136F54")]
+[assembly: Guid("A75D4202-958B-48D8-8F8C-8FD3AE5836F1")]
 
 // Version information for an assembly consists of the following four values:
 //
