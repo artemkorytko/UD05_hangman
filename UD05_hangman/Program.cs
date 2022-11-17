@@ -11,38 +11,21 @@ namespace UD05_hangman
 
         public static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-            //считываем словарь
-            string[] words = File.ReadAllLines(path);
-
+            HangmanWord word = new HangmanWord(path);
             Console.WriteLine("Привет! Давай сыграем в игру!");
-            Random random = new Random();
+
 
             while (true)
             {
-                //загадываем слово
-                int randomIndex = random.Next(0, words.Length); // 0, 34010 
-                string word = words[randomIndex];
-                Console.WriteLine(word);
-                char[] charWord = word.ToCharArray();
-                Console.WriteLine(charWord.Length);
+                word.GenerateWord();
+                Console.WriteLine(word.StringWord);//debug
 
                 //создаём счётчик
-                int opennedLetters = 0;
                 int errors = MaxErrors;
 
-                //сформирует строку для отображенния процесса
-                char[] viewWord = new char[charWord.Length];
-                for (int i = 0; i < viewWord.Length; i++)
-                {
-                    viewWord[i] = '*';
-                }
+                Console.WriteLine($"Загадано слово из {word.StringWord.Length} букв");
 
-                Console.WriteLine(new string(viewWord));
-
-                Console.WriteLine($"Загадано слово из {charWord.Length} букв");
-
-                while (errors > 0 && opennedLetters != charWord.Length)
+                while (errors > 0 && !word.IsSolved)
                 {
                     //просим ввести букву и считываем строку
                     Console.WriteLine("Введите букву");
@@ -58,20 +41,9 @@ namespace UD05_hangman
 
                     //проверяем есть ли такая буква в слове
                     char letter = inputString[0];
-                    bool isLetterExist = false;
-                    for (int i = 0; i < charWord.Length; i++)
-                    {
-                        if (charWord[i] == letter)
-                        {
-                            opennedLetters++;
-                            viewWord[i] = charWord[i];
-                            charWord[i] = '-';
-                            isLetterExist = true;
-                        }
-                    }
 
                     Console.Clear();
-                    if (isLetterExist)
+                    if (word.CheckLetter(letter))
                     {
                         Console.WriteLine("Угадал!!! Есть такая буква!!");
                     }
@@ -81,7 +53,7 @@ namespace UD05_hangman
                         Console.WriteLine($"Такой буквы нет! Осталось попыток: {errors}");
                     }
 
-                    Console.WriteLine(new string(viewWord));
+                    Console.WriteLine(word.ViewWord);
                 }
 
                 Console.Clear();
