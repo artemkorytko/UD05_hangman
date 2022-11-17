@@ -2,19 +2,24 @@
 using System.ComponentModel.Design.Serialization;
 using System.IO;
 
+//? в этом файле все про View и юзера 
+
+
 namespace UD05_hangman // пространство имен, все что относится к этому проекту
 {
+    //вызвали класс "программы" (логики), которая записана во ВНЕШНЕМ файле
     internal class Program
     {
+        //местные переменные
         // путь к файлу со словами
         private static string path = @"/Users/ascha/Unity_Projects/UD05_hangman/UD05_hangman/word_rus.txt";
+
 
         private const int MaxErrors = 10;
         private const int noLongerSym = 6;
 
-        // --------------- рисуем сложного человечка -----------
 
-        //функция вывода рисунка
+        // --------------- рисуем сложного человечка ------//функция вывода рисунка
         private static void DrawCoolerHangman(int user_error_count)
         {
             string[] coolerVisual = new string[12]
@@ -45,17 +50,20 @@ namespace UD05_hangman // пространство имен, все что от�
             Console.WriteLine("#####################"); // низ рамочки
         }
 
+
         // ----------------------------------------------------------------------
 
-        public static void Main(string[] args)
+        public static void Main(string[] args) //args - это "аргументы?" - хранит все, что ввел юзер
         {
             string[] all_words = File.ReadAllLines(path); // прочитает все строки из файла и засунет в массив
 
+            HangmanWord word = new HangmanWord(path); //!!!создало экземпляр класса из второго файла с path на входе!!!!
+            
+            
+            // ----------------------------------------------------------
             // Новый массив только коротких слов
             string[] short_words = null;
-
             // выудить короткие слова и поместить в массив short_words[]
-            // ----------------------------------------------------------
             int short_count = 0;
             for (int i = 0; i < all_words.Length; i++)
             {
@@ -66,43 +74,35 @@ namespace UD05_hangman // пространство имен, все что от�
                     short_words[short_count - 1] = all_words[i];
                 }
             }
-
+            
             Console.Clear();
             Console.WriteLine($"Добавлено {short_words.Length} коротких слов до {noLongerSym} букв.");
-
             // ----------------------------------------------------------
 
+            
             Console.WriteLine("Давай поиграем!"); // выведет приветствие
-            //string word = words[0]; // 1-е слово
-
-            Random my_random = new Random(); //экземпляр типа переменной
+            
+            //убрала после ООП// Random my_random = new Random(); //экземпляр типа переменной
 
             while (true)
             {
                 {
-                    string word = short_words[my_random.Next(0, short_words.Length)]; //загадали слово
+                    word.GeneratorWord();
+                    Console.WriteLine(word.StringWord);
 
-                    // Для отладки: показать загаданное слово
-                    Console.WriteLine(word);
-
-                    //строку символов в массив отдельных символов, его отгадываем
-                    char[] guessWordArray = word.ToCharArray();
-
-                    int opennedLetter = 0; //переменная счетчик
+                    //убрала после ООП//int opennedLetter = 0; //переменная счетчик
                     int errors = 0; //сколько допущено ошибок (по умолчанию ноль)
 
                     // временный массив спрятанных букв
                     // новый экземпляр массива символов char - место в памяти на символы размером
-                    char[] StarsWord = new char[guessWordArray.Length];
-
+                    //убрала после ООП//char[] StarsWord = new char[guessWordArray.Length];
                     // создаем массив из звездочек длиной как у загаданного слова
-                    for (int i = 0; i < StarsWord.Length; i++)
-                        StarsWord[i] = '*';
-
-                    Console.WriteLine(new string(StarsWord));
+                    //-убрала после ООП// (int i = 0; i < StarsWord.Length; i++)
+                    //убрала после ООП//    StarsWord[i] = '*';
+                    //убрала после ООП//Console.WriteLine(new string(StarsWord));
 
                     // бакс добавляет переменнок в строку
-                    Console.WriteLine($"Загадано слово из {guessWordArray.Length} букв");
+                    Console.WriteLine($"Загадано слово из {word.StringWord.Length} букв");
 
                     // Символьный массив для ранее введенных букв
                     char[] dict_entered_symbols_array = null;
@@ -111,7 +111,7 @@ namespace UD05_hangman // пространство имен, все что от�
                     // ------------------- Начало цикла -------------------
 
                     // пока одно из условий не  false
-                    while (errors < MaxErrors && opennedLetter != guessWordArray.Length)
+                    while (errors < MaxErrors && !word.IsSolved)
                     {
                         Console.WriteLine("Введи букву:");
 
@@ -130,7 +130,7 @@ namespace UD05_hangman // пространство имен, все что от�
                         // введенный символ
                         char letter = inputString[0];
 
-                        // -------------------------
+                        // --------------------------------------------------
                         // вводился ли символ ранее?
                         bool is_symbol_found = false;
                         for (int i = 0; i < dict_entered_symbols; i++)
@@ -142,29 +142,31 @@ namespace UD05_hangman // пространство имен, все что от�
                             }
                         }
 
-                        // значит ранее этот символ не вводился... Запоминаем его в массиве
-                        if (is_symbol_found)
-                        {
-                            Console.Clear();
-                            Console.WriteLine($"Буква {letter} уже была! Ход не засчитывается.");
-                            string used_letters_list = null;
-                            for (int i = 0; i < dict_entered_symbols; i++)
+                        if (word.CheckLetter(char letter))
+                            // значит ранее этот символ не вводился... Запоминаем его в массиве
+                            if (is_symbol_found)
                             {
-                                used_letters_list = used_letters_list + dict_entered_symbols_array[i] + " ";
+                                Console.Clear();
+                                Console.WriteLine($"Буква {letter} уже была! Ход не засчитывается.");
+                                string used_letters_list = null;
+                                for (int i = 0; i < dict_entered_symbols; i++)
+                                {
+                                    used_letters_list = used_letters_list + dict_entered_symbols_array[i] + " ";
+                                }
+
+                                Console.WriteLine($"Список введенных ранее символов: {used_letters_list}");
+                                continue;
                             }
+                            else
+                            {
+                                // был введен новая буква. Запоминаем в массиве!
+                                dict_entered_symbols++;
+                                Array.Resize(ref dict_entered_symbols_array, dict_entered_symbols);
+                                dict_entered_symbols_array[dict_entered_symbols - 1] = letter;
+                            }
+                        // ---------------------------------------
 
-                            Console.WriteLine($"Список введенных ранее символов: {used_letters_list}");
-                            continue;
-                        }
-                        else
-                        {
-                            // был введен новая буква. Запоминаем в массиве!
-                            dict_entered_symbols++;
-                            Array.Resize(ref dict_entered_symbols_array, dict_entered_symbols);
-                            dict_entered_symbols_array[dict_entered_symbols - 1] = letter;
-                        }
-                        // -------------------------
-
+                        
                         // проверяем есть ли буква в слове
                         bool go_back_flag = false;
                         bool isLetterExist = false;
@@ -188,7 +190,7 @@ namespace UD05_hangman // пространство имен, все что от�
                                 isLetterExist = true;
                             }
                         }
-
+                        
                         // если флаг повтора символа установлен, вернуться обратно к циклу "while"
                         if (go_back_flag)
                             continue; // вернуться обратно к циклу "while"
@@ -211,8 +213,6 @@ namespace UD05_hangman // пространство имен, все что от�
 
                             Console.WriteLine($"Такой буквы нет. Осталось попыток: {10 - errors}");
                             DrawCoolerHangman(errors); //вызывает функцию рисования сложного чела
-
-                            
                         }
 
                         // отображаем слово с обновленным состоянием (с открытыми символами и звездочками)
