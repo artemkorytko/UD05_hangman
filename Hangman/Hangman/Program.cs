@@ -1,13 +1,14 @@
 ﻿using System;
 
-namespace UD05_hangman
+namespace Hangman
 {
     internal class Program
     {
         public static void Main(string[] args)
         {
         Console.WriteLine("Hello World!");
-        Console.ReadLine;
+        Console.ReadLine();
+        
         }
     }
 }
