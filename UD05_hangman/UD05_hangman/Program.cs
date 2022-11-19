@@ -31,7 +31,7 @@ namespace UD05_hangman
                 if (inputString.Length == 0 || !Char.IsLetter(inputString[0]))
                 {
                     Console.Clear();
-                    Console.WriteLine("Ты хочешь меня обмануть? НЕ ВЫЙДЕТ! Вводи ТОЛЬКО буквы");
+                    Console.WriteLine("Ты хочешь меня обмануть? ");
                     return;
                 }
 

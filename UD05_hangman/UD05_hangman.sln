@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UD05_hangman", "UD05_hangman\UD05_hangman.csproj", "{DCCBE023-2CB2-48AB-951B-642A20F45F20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework05Calculator", "Homework05Calculator\Homework05Calculator.csproj", "{2351175B-81C8-4AAD-8AEB-4D0B16255F77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{DCCBE023-2CB2-48AB-951B-642A20F45F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCCBE023-2CB2-48AB-951B-642A20F45F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCCBE023-2CB2-48AB-951B-642A20F45F20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2351175B-81C8-4AAD-8AEB-4D0B16255F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2351175B-81C8-4AAD-8AEB-4D0B16255F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2351175B-81C8-4AAD-8AEB-4D0B16255F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2351175B-81C8-4AAD-8AEB-4D0B16255F77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
