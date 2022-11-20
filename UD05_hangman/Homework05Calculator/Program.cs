@@ -5,6 +5,9 @@ namespace HomeworkCalculatorV1
 {
     internal class Program
     {
+        
+        private static char[] chars = {'+', '-', '*', '/', '^'};
+        
         public static void Main(string[] args)
         {
             Console.WriteLine("Тебя приветствует калькулятор.(версия 1.0)");
@@ -17,22 +20,11 @@ namespace HomeworkCalculatorV1
                 
                 if (!String.IsNullOrWhiteSpace(inputData) && CheckInputData(inputData))
                 {
-                    char[] chars = {'+', '-', '*', '/', '^'};
+                    string[] str = inputData.Split(chars, 2);
+                    int x = CheckParse(str[0]);
+                    int y = CheckParse(str[1]);
                     
-                    string[] subs = inputData.Split(chars, 2);
-                    int x = CheckParse(subs[0]);
-                    int y = CheckParse(subs[1]);
-                    
-                    int index = -1;
-                    for (int i = 0; i < chars.Length; i++)
-                    {
-                        if (index == -1)
-                            index = inputData.IndexOf(chars[i]);
-                    }
-                    char operation = inputData[index];
-                    
-                    
-                    CalculationProcess process = new CalculationProcess(x,y,operation);
+                    CalculationProcess process = new CalculationProcess(x,y,SignSearch(inputData));
                     Console.WriteLine(process.WriteResult());
                 }
                 else
@@ -41,6 +33,19 @@ namespace HomeworkCalculatorV1
                     Console.WriteLine("моя твоя не понимать!");
                 }
             }
+        }
+
+        private static char SignSearch(string str)
+        {
+            
+            int index = -1;
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (index == -1)
+                    index = str.IndexOf(chars[i]);
+            }
+
+            return str[index];
         }
 
         private static bool CheckInputData(string data)
@@ -53,13 +58,13 @@ namespace HomeworkCalculatorV1
             return true;
         }
 
-        private static int CheckParse(string subs)
+        private static int CheckParse(string str)
         {
             int number;
-            bool isCheck = int.TryParse(subs, out number);
+            bool isCheck = int.TryParse(str, out number);
             
             if (isCheck)
-                return Int32.Parse(subs);
+                return Int32.Parse(str);
 
             Console.WriteLine("Ошибка конвертации, return 0");
             return 0;

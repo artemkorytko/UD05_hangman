@@ -13,6 +13,7 @@ namespace HomeworkCalculatorV1
             _y = y;
             _operation = operation;
         }
+        
         public double WriteResult()
         {
             double result = 0.0;
