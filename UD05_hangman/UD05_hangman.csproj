@@ -39,6 +39,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Calc.cs" />
         <Compile Include="DrawHangman.cs" />
         <Compile Include="HangmanWord.cs" />
         <Compile Include="Program.cs" />

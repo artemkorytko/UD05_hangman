@@ -26,8 +26,7 @@ namespace UD05_hangman
         //функция вывода рисунка (было еще static void но я убрала)
         public void StartDrawing(int _user_error_count, int _MaxErrors)
         {
-            
-
+            //-------массив с виселецей
             string[] coolerVisual = new string[12]
             {
                 "#     +-------+     #", //0
@@ -67,7 +66,7 @@ namespace UD05_hangman
             {
                 "Выиграл!!! (o˘◡˘o)", //0
                 "           ---|---", //1
-                $"      ____/   |   |____[{_DrawWinnerWord}]", //2 - чел держит загаданное слово в рамочке!!
+                $"      ____/   |   \\____[{_DrawWinnerWord}]", //2 - чел держит загаданное слово в рамочке!!
                 "              |", //3 
                 "              |", //4
                 "             /|", //5
