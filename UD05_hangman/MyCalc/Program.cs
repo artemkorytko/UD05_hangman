@@ -27,16 +27,15 @@ namespace MyCalc
                 if (splitString.Length == 3)
                 {
                     bool result1 = int.TryParse(splitString[0], out x);
-                    if (result1 == true)
+                    if (result1)
                     {
                         //Console.WriteLine($"Успех! Первое число {x}"); //Debug message
                         bool result2 = int.TryParse(splitString[2], out y);
-                        if (result2 == true)
+                        if (result2)
                         {
                             //Console.WriteLine($"Успех! Второе число {y}"); //Debug message
                             bool result3 = char.TryParse(splitString[1], out sign);
-                            if (result3 == true && sign == '+' || sign == '-' || sign == '*' || sign == '/' ||
-                                sign == '^')
+                            if (result3 && sign == '+' || sign == '-' || sign == '*' || sign == '/' || sign == '^')
                             {
                                 //Console.WriteLine($"Успех! Знак {sign}"); //Debug message
                             }

@@ -18,6 +18,7 @@ namespace MyCalc
             _sign = sign;
         }
 
+        //Метод проверки деления на ноль
         public string CheckDivNull()
         {
             if (_sign == '/' && _y == 0)
@@ -28,6 +29,7 @@ namespace MyCalc
             return _error;
         }
 
+        //Метод вычисления
         public int Calculation()
         {
             switch (_sign)
