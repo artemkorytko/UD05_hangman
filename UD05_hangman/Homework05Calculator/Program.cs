@@ -6,7 +6,7 @@ namespace HomeworkCalculatorV1
     internal class Program
     {
         
-        private static char[] chars = {'+', '-', '*', '/', '^'};
+        private static char[] chars = {'+', '-', '*', '/', '^', '%'};
         
         public static void Main(string[] args)
         {

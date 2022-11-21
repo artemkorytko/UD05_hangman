@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace HomeworkCalculatorV1
 {
@@ -14,7 +15,7 @@ namespace HomeworkCalculatorV1
             _operation = operation;
         }
         
-        public double WriteResult()
+        public string WriteResult()
         {
             double result = 0.0;
             switch (_operation)
@@ -22,17 +23,20 @@ namespace HomeworkCalculatorV1
                 case '+':
                     result = _x + _y;
                     break;
-                
+
                 case '-':
                     result = _x - _y;
                     break;
-                
+
                 case '*':
                     result = _x * _y;
                     break;
-                
+
                 case '/':
-                    result = Convert.ToDouble(_x / _y);
+                    if (_y != 0)
+                        result = Convert.ToDouble(_x / _y);
+                    else
+                       return "На ноль делить нельзя! Брось эту затею!";
                     break;
                 
                 case '%':
@@ -48,7 +52,7 @@ namespace HomeworkCalculatorV1
                     break;
             }
             
-            return result;
+            return result.ToString();
         }
 
     }
