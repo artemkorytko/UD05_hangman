@@ -3,58 +3,45 @@
 namespace Calculator
 {
     internal class Program
+
     {
+        private static char[] chars = { '-', '+', '*', '/' };
+        private static char oper = 'x';
+        
+       
+        
         public static void Main(string[] args)
         {
-            int a;
-            int b;
-            char op;
-            Console.WriteLine("ведите а ");
-            a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите b");
-            b = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("введите оператор, используйте только +, -, /, *");
-            op = Convert.ToChar(Console.ReadLine());
+            Console.WriteLine("Добро пожаловать в калькулятор");
+            Console.WriteLine("В калькуляторе используются такие операторы, как '/', '*', '-', '+',");
 
-            double result = 0.0;
-            switch (op)
+            while (true)
             {
-                case '/' :
-                    if (b!=0)
-                    {
-                        result = a / b;
-                        Console.WriteLine( $"ответ {result}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("на ноль делить нельзя!");
-                        return;
-                    }
-                    break;
+               
+                Console.WriteLine("Введите выражение:");
+
+                string imputData = Console.ReadLine();
+
+                string[] str = imputData.Split(chars, 2);
+                int a = Int32.Parse(str[0]);
+                int b = Int32.Parse(str[1]);
+                
+                int index = -1;
+                for (int i = 0; i < chars.Length; i++)
+                {
+                    if (index == -1)
+                        index = imputData.IndexOf(chars[i]);
+                }
+
+                oper = imputData[index];
                     
-                case '*':
-                    result = a * b;
-                    Console.WriteLine($"ответ {result}");
-                    break;
-                
-                case '-':
-                    result = a - b;
-                    Console.WriteLine($"ответ {result}");
-                    break;
-                    
-                case '+':
-                    result = a + b;
-                    Console.WriteLine($"ответ {result}");
-                    break;
-                
-                default:
-                    Console.WriteLine("ошибка, проверьте введенные данные");
-                    break;
-                
+
+                brain_of_calculate brain = new brain_of_calculate(a, b, oper);
+                Console.WriteLine(brain.WriteResult());
+
+
             }
-            
-            
-            
+
         }
     }
 }
