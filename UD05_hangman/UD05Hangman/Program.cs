@@ -1,45 +1,30 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 namespace UD05Hangman
 {
     internal class Program
     {
-        private static string Path = @"D:\Project Hangman\UD05_hangman\word_rus.txt";
+        private static string path = @"D:\Project Hangman\UD05_hangman\word_rus.txt";
         private const int maxErrors = 10;
 
         public static void Main()
         {
-            //считываем словарь
-            string[] words = File.ReadAllLines(Path);
-
-            Console.WriteLine("Добро пожаловать в игру!");
+            HangmanWord word = new HangmanWord(path);
+            Console.WriteLine("Добро пожаловать в эфир капитал шоу Поле Чудес!");
+            
             while (true)
             {
-                //загадываем слово
-                Random random = new Random();
-                string word = words[random.Next(0, words.Length)];
-                Console.WriteLine(word);
-                char[] charWord = word.ToCharArray();
-                Console.WriteLine(charWord.Length);
-
+                word.GenerateWord();
+                Console.WriteLine(word.StringWord);
+                
                 //создаём счётчик
-                int openedLetters = 0;
                 int errors = maxErrors;
+                
+                Console.WriteLine($"Я загадал слово из {word.StringWord.Length} букв");
 
-                //формируем строку для отображения процесса
-                char[] viewWord = new char[charWord.Length];
-
-                for (int i = 0; i < viewWord.Length; i++)
-                {
-                    viewWord[i] = '*';
-                }
-
-                Console.WriteLine(new string(viewWord));
-
-                Console.WriteLine($"Я загадал слово из {charWord.Length} букв");
-
-                while (errors > 0 && openedLetters != charWord.Length)
+                while (errors > 0 && !word.IsSolved)
                 {
                     //просим ввести букву и считываем её
                     Console.WriteLine("Введите букву");
@@ -50,24 +35,14 @@ namespace UD05Hangman
                     {
                         Console.Clear();
                         Console.WriteLine("Вводите только буквы!");
+                        return;
                     }
 
                     //проверяем есть ли такая буква в слове
                     char letter = inputString[0];
-                    bool isLetterExist = false;
-                    for (int i = 0; i < charWord.Length; i++)
-                    {
-                        if (charWord[i] == letter)
-                        {
-                            openedLetters++;
-                            viewWord[i] = charWord[i];
-                            charWord[i] = '-';
-                            isLetterExist = true;
-                        }
-                    }
-
+                    
                     Console.Clear();
-                    if (isLetterExist)
+                    if (word.CheckLetter(letter))
                     {
                         Console.WriteLine("Верно!");
                     }
@@ -76,8 +51,11 @@ namespace UD05Hangman
                         errors--;
                         Console.WriteLine($"Такой буквы нет! Осталось {errors} попыток");
                     }
-                    Console.WriteLine(new string(viewWord));
+                    
+                    Console.WriteLine(word.ViewWord);
                 }
+                
+                Console.Clear();
                 
                 if (errors == 0)
                 {
