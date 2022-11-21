@@ -4,11 +4,11 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{FF0ACA54-EC24-4B89-BF3E-75614E136F54}</ProjectGuid>
+        <ProjectGuid>{BDBFE5C1-9E63-4763-87FE-DC29F761EE82}</ProjectGuid>
         <OutputType>Exe</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>UD05_hangman</RootNamespace>
-        <AssemblyName>UD05_hangman</AssemblyName>
+        <RootNamespace>Calc_homework</RootNamespace>
+        <AssemblyName>Calc_homework</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -39,8 +39,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="HangmanWord.cs" />
-        <Compile Include="Program.cs" />
+        <Compile Include="CalcOperation.cs" />
+        <Compile Include="Cals.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
