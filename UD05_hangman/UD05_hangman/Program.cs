@@ -11,11 +11,11 @@ namespace UD05_hangman
 
         public static void Main(string[] args)
         {
+            HangmanWord word = new HangmanWord(path);
+            Console.WriteLine("Я хочу с тобой сыграть в одну игру!");
+            
             while (true)
             {
-                HangmanWord word = new HangmanWord(path);
-                Console.WriteLine("Я хочу с тобой сыграть в одну игру!");
-            
                 word.GenerateWord();
                 Console.WriteLine(word.StringWord);
 
