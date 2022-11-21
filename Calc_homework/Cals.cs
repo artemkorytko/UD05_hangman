@@ -4,7 +4,7 @@ namespace Calc_homework
 {
     internal class Cals
     {
-        private static char[] chars = { '+', '-', '*', '/', '^'};
+        private static char[] chars = {'+', '-', '*', '/', '^'};
 
         public static void Main(string[] args)
         {
@@ -56,8 +56,8 @@ namespace Calc_homework
 
         private static int CheckParse(string str)
         {
-            int number;
-            bool isCheck = int.TryParse(str, out number);
+            int num;
+            bool isCheck = int.TryParse(str, out num);
 
             if (isCheck)
                 return Int32.Parse(str);

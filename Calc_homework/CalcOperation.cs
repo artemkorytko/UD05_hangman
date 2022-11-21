@@ -12,7 +12,7 @@ namespace Calc_homework
         {
             _x = x;
             _y = y;
-            _sing = _sing;
+            _sing = sing;
         }
 
         public string WriteResult()
@@ -27,7 +27,7 @@ namespace Calc_homework
                 case '-':
                     result = _x - _y;
                     break;
-                
+
                 case '/':
                     if (_y != 0)
                         result = Convert.ToDouble(_x / _y);
@@ -44,7 +44,7 @@ namespace Calc_homework
                     break;
 
                 default:
-                    Console.WriteLine("Неверный оператор");
+                    Console.WriteLine("test");
                     break;
             }
 
