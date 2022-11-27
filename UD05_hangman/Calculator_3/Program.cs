@@ -6,63 +6,133 @@ namespace Calculator_3
 {
     internal class Program
     {
-        public class Calculator
+        private class Calculator
         {
-            public static double number1;
-            public static double number2;
-            public static char sign;
-            public static double x;
+            public double number1;
+            public double number2;
+            private double x;
+            public char sign;
+            
 
-            public double Calculating()
+
+            public double Calculation(double number1, double number2, char sign, double x)
             {
-                if (Calculator.sign == '+')
+                
+
+
+                switch (sign)
                 {
-                    Calculator.x = Calculator.number1 + Calculator.number2;
-                    
-                }
-                if (sign == '-')
-                {
-                    x = Calculator.number1 - Calculator.number2;
-                }
-                if (Calculator.sign == '*')
-                {
-                    x = Calculator.number1*Calculator.number2;
-                }
-                if (Calculator.sign == '/')
-                {
-                    if (Calculator.number2 == 0)
-                    {
-                        Console.WriteLine("can not be divided by 0");
-                    }
-                    else
-                    {
-                        x = Calculator.number1 / Calculator.number2;
-                    }
+                    case '+':
+                        
+                        x = Sum(number1, number2);
+                        break;
+
+
+                    case '-':
+                        x = Minus(number1, number2);
+                        break;
+
+
+                    case '*':
+                        x = Multi(number1, number2);
+                        break;
+
+
+
+                    case '/':
+                        if (number2 == 0)
+                        {
+                            Console.WriteLine("can not be divided by 0");
+                        }
+                        else
+                        {
+                            x = Devision(number1, number2);
+                        }
+
+                        break;
+
+
+                    case '^':
+
+                        x = Pow(number1, number2);
+                        break;
+
                 }
 
-                if (Calculator.sign == '^')
-                {
-                    x = Math.Pow(Calculator.number1, Calculator.number2);
-                }
 
                 return x;
-                Console.WriteLine($"{x}");
+
+                void Result()
+                {
+                    Console.WriteLine(5);
+                }
+                
+
+            }
+
+
+                double Sum(double number1, double number2)
+                {
+                    return (number1 + number2);
+                }
+
+                double Minus(double number1, double number2)
+                {
+                    return (number1 - number2);
+                }
+
+                double Multi(double number1, double number2)
+                {
+                    return (number1 * number2);
+                }
+
+                double Devision(double number1, double number2)
+                {
+                    return (number1 / number2);
+                }
+
+                double Pow(double number1, double number2)
+                {
+                    return (Math.Pow(number1, number2));
+                }
+                
+                
+
             }
 
 
 
-            public static void Main(string[] args)
+
+
+            public class InputtedData
+
             {
-                Console.WriteLine("Write the symbol of operation (choose +; -; *; /; ^)");
-                Calculator.sign = Convert.ToChar(Console.ReadLine());
-                Console.WriteLine("Write the first number");
-                Calculator.number1 = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Write the second number");
-                Calculator.number2 = Convert.ToDouble(Console.ReadLine());
 
+
+                public static void Main(string[] args)
+                {
+
+
+                    
+
+                    Calculator num1 = new Calculator();
+                    Console.WriteLine("Write the first number");
+                    num1.Number1 = Convert.ToDouble(Console.ReadLine());
+                    Calculator num2 = new Calculator();
+                    Console.WriteLine("Write the second number");
+                    num2.Number2 = Convert.ToDouble(Console.ReadLine());
+                    Calculator signNew = new Calculator();
+                    Console.WriteLine("Write the symbol of operation (choose +; -; *; /; ^)");
+                    signNew.sign = Convert.ToChar(Console.ReadLine());
+
+
+
+
+                }
 
             }
 
+            
         }
+
     }
-}
